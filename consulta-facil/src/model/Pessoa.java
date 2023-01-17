@@ -1,3 +1,5 @@
+package model;
+
 public class Pessoa {
 
 
@@ -48,11 +50,6 @@ public class Pessoa {
     }
 
 
-    public static void cadastrar () {
-
-        System.out.println("Bora fazer um cadastrinho?");
-
-    }
 
 
 

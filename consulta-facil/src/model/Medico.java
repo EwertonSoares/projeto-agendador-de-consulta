@@ -1,4 +1,6 @@
-public class Medico {
+package model;
+
+public class Medico extends Pessoa {
 
 
 
@@ -8,9 +10,8 @@ public class Medico {
 
 
 
-    public Medico(int crm, String especialidade) {
-        this.crm = crm;
-        this.especialidade = especialidade;
+    public Medico(String nome, int telefone, String endereco, int cpf) {
+        super(nome, telefone, endereco, cpf);
     }
 
 
