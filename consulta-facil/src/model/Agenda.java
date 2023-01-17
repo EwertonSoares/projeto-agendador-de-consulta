@@ -13,23 +13,29 @@ public class Agenda {
         this.paciente = paciente;
     }
 
-    public String getData(String data) {
-        return this.data;
+    public String getData() {
+        return data;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public String getHorario() {
+        return horario;
     }
 
-    public String getHorario(String horario) {
-        return this.horario;
+    public Medico getMedico() {
+        return medico;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
+    public Paciente getPaciente() {
+        return paciente;
+    }
 
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 }
 
 
