@@ -25,8 +25,7 @@ public class menu {
             System.out.println("            0 - Sair                                 ");
             System.out.println("                                                     ");
             System.out.println("*****************************************************");
-            System.out.println("Entre com a opção desejada:                          ");
-            System.out.println("                                                     ");
+            System.out.println("Entre com a opção desejada: ");
 
             opcao = leia.nextInt();
 
