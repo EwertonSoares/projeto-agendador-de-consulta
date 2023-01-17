@@ -2,7 +2,6 @@ package model;
 
 public class Pessoa {
 
-
     private String nome;
     private int telefone;
     private String endereco;
@@ -15,7 +14,6 @@ public class Pessoa {
         this.endereco = endereco;
         this.cpf = cpf;
     }
-
 
     public String getNome() {
         return nome;
@@ -48,9 +46,5 @@ public class Pessoa {
     public void setCpf(int cpf) {
         this.cpf = cpf;
     }
-
-
-
-
 
 }
