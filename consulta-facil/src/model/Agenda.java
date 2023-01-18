@@ -1,6 +1,6 @@
 package model;
 
-public class Agenda {
+public class Agenda{
      private String data;
      private String horario;
      private Medico medico;
