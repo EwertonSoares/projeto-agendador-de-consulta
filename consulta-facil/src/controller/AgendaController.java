@@ -3,7 +3,6 @@ package controller;
 
 import controller.dao.AgendaDAO;
 import model.Agenda;
-import model.Paciente;
 
 import java.util.ArrayList;
 
@@ -32,5 +31,18 @@ public class AgendaController implements AgendaDAO {
     @Override
     public boolean deletar(Agenda agenda) {
         return agendas.remove(agenda);
+    }
+    @Override
+    public void atualizar(Agenda agenda) {
+        int index = 0;
+        for(Agenda ag : agendas) {
+            if(ag.getData().equals(agenda.getData()) && ag.getHorario().equals(agenda.getHorario()) &&
+                    ag.getPaciente().getCpf().equals(agenda.getPaciente().getCpf())) {
+
+                index = 0;
+            }
+        }
+
+         agendas.set(index, agenda);
     }
 }

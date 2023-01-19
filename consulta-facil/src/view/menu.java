@@ -3,7 +3,7 @@ package view;
 import controller.AgendaController;
 import controller.MedicoController;
 import controller.PacienteConroller;
-import exceptions.AgendaNaoRemovidaException;
+import view.exceptions.*;
 import model.*;
 
 import java.util.Scanner;
@@ -13,7 +13,8 @@ public class menu {
     static AgendaController crudAgenda = new AgendaController();
     static MedicoController crudMedico = new MedicoController();
 
-    public static void main(String[] args) throws AgendaNaoRemovidaException {
+    public static void main(String[] args) throws AgendaNaoRemovidaException, AgendaNaoAtualizadaException,
+            PacienteNaoCadastradoException, ConsultaNaoCanceladaException, ConsultaNaoAgendadaException, MedicoNaoCadastradoException {
 
         Scanner leia = new Scanner(System.in);
         int opcao;
@@ -30,7 +31,8 @@ public class menu {
             System.out.println("            2 - Visualizar agenda                    ");
             System.out.println("            3 - Agendar consulta                     ");
             System.out.println("            4 - Cancelar consulta                    ");
-            System.out.println("            5 - Cadastrar Médico                     ");
+            System.out.println("            5 - Atualizar consulta                    ");
+            System.out.println("            6 - Cadastrar Médico                     ");
             System.out.println("            0 - Sair                                 ");
             System.out.println("                                                     ");
             System.out.println("*****************************************************");
@@ -63,6 +65,10 @@ public class menu {
                     break;
                 case 5:
                     System.out.println("Cadastrar Médico");
+                    atualizarAgenda();
+                    break;
+                case 6:
+                    System.out.println("Cadastrar Médico");
                     cadastarMedico();
                     break;
                 case 0:
@@ -74,10 +80,36 @@ public class menu {
                     break;
             }
         }
+    }
+
+    private static void atualizarAgenda() throws AgendaNaoAtualizadaException {
+        Scanner ler = new Scanner(System.in);
+        String data, horario;
+        Paciente paciente = new Paciente();
+
+        System.out.println("Digite o CPF: ");
+        paciente.setCpf(ler.next());
+
+        System.out.println("Digite a data da agenda: ");
+        data = ler.next();
+
+        System.out.println("Digite o horario: ");
+        horario = ler.next();
+
+        atualizar(data, horario, paciente);
 
     }
 
-    private static void cancelarConsulta() throws AgendaNaoRemovidaException {
+    private static void atualizar(String data, String horario, Paciente paciente) throws AgendaNaoAtualizadaException {
+        try {
+            crudAgenda.atualizar(new Agenda(data, horario, null, paciente));
+            System.out.println("**** Agenda atualizasda com sucesso! *****");
+        } catch (Exception e) {
+            throw new AgendaNaoAtualizadaException("Não foi possivel atualizar a agenda - ".concat(e.getMessage()));
+        }
+    }
+
+    private static void cancelarConsulta() throws AgendaNaoRemovidaException, ConsultaNaoCanceladaException {
         Scanner getInfo = new Scanner(System.in);
         Paciente paciente = new Paciente();
 
@@ -88,25 +120,30 @@ public class menu {
 
         paciente.setCpf(cpf);
 
-        deletarAgenda(paciente);
+        try {
+            deletarAgenda(paciente);
+        } catch (Exception e) {
+            throw new ConsultaNaoCanceladaException("Não foi possivel cancelar a consulta - " + e.getMessage());
+        }
     }
 
     private static void deletarAgenda(Paciente paciente) throws AgendaNaoRemovidaException {
         try {
             crudAgenda.deletar(new Agenda(paciente));
             System.out.println("**** Agenda removida com sucesso! *****");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new AgendaNaoRemovidaException("Não foi possivel deletar a agenda - ".concat(e.getMessage()));
         }
     }
 
-    private static void agendarConsulta() {
+    private static void agendarConsulta() throws ConsultaNaoAgendadaException {
         Scanner entrada = new Scanner(System.in);
         String cpf, crm;
         String hora, data;
 
         System.out.print("Digite o Horario: ");
         hora = entrada.next();
+
         System.out.print("Digite a data: ");
         data = entrada.next();
 
@@ -119,11 +156,15 @@ public class menu {
         crm = entrada.next();
 
         Agenda ag = new Agenda(data, hora, crudMedico.getMedico(crm), crudPaciente.getPaciente(cpf));
-        crudAgenda.inserir(ag);
+        try {
+            crudAgenda.inserir(ag);
+        } catch (Exception e) {
+            throw new ConsultaNaoAgendadaException("Não foi possivel agendar a consulta - " + e.getMessage());
+        }
     }
 
-    private static void cadastarPaciente() {
-        String cpf, tel, end, nome,conv;
+    private static void cadastarPaciente() throws PacienteNaoCadastradoException {
+        String cpf = "", tel, end, nome, conv;
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o nome: ");
@@ -142,15 +183,18 @@ public class menu {
         conv = entrada.next();
 
         Paciente paciente = new Paciente(nome, tel, end, cpf, conv);
-        crudPaciente.inserir(paciente);
+
+        try {
+            crudPaciente.inserir(paciente);
+        } catch (Exception e) {
+            throw new PacienteNaoCadastradoException("Não foi possivel cadastrar paciente - " + e.getMessage());
+        }
 
     }
-    private static void cadastarMedico() {
-        String nome;
-        String tel;
-        String end;
-        String cpf, crm;
-        String esp;
+
+    private static void cadastarMedico() throws MedicoNaoCadastradoException {
+        String nome, tel, end, cpf, crm, esp;
+
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o nome: ");
@@ -172,7 +216,12 @@ public class menu {
         esp = entrada.next();
 
         Medico medico = new Medico(nome, tel, end, cpf, crm, esp);
-        crudMedico.inserir(medico);
+
+        try {
+            crudMedico.inserir(medico);
+        } catch (Exception e) {
+            throw new MedicoNaoCadastradoException("Não foi possivel cadastrar paciente - " + e.getMessage());
+        }
 
     }
 }

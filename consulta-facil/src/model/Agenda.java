@@ -21,6 +21,14 @@ public class Agenda{
         return data;
     }
 
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
     public String getHorario() {
         return horario;
     }
