@@ -3,6 +3,7 @@ package view;
 import controller.AgendaController;
 import controller.MedicoController;
 import controller.PacienteConroller;
+import exceptions.AgendaNaoRemovidaException;
 import model.*;
 
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class menu {
     static AgendaController crudAgenda = new AgendaController();
     static MedicoController crudMedico = new MedicoController();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AgendaNaoRemovidaException {
 
         Scanner leia = new Scanner(System.in);
         int opcao;
@@ -76,31 +77,32 @@ public class menu {
 
     }
 
-    private static void cancelarConsulta() {
+    private static void cancelarConsulta() throws AgendaNaoRemovidaException {
         Scanner getInfo = new Scanner(System.in);
         Paciente paciente = new Paciente();
 
         System.out.println("\n### Para cancelar a consulta preencha cpf abaixo: ###\n ");
 
         System.out.println("Digite seu cpf: ");
-        int cpf = getInfo.nextInt();
+        String cpf = getInfo.next();
 
         paciente.setCpf(cpf);
 
         deletarAgenda(paciente);
     }
 
-    private static void deletarAgenda(Paciente paciente) {
-        if(crudAgenda.deletar(new Agenda(paciente))) {
+    private static void deletarAgenda(Paciente paciente) throws AgendaNaoRemovidaException {
+        try {
+            crudAgenda.deletar(new Agenda(paciente));
             System.out.println("**** Agenda removida com sucesso! *****");
-        } else {
-            System.out.println("**** ERRO *****");
+        } catch (Exception e){
+            throw new AgendaNaoRemovidaException("Não foi possivel deletar a agenda - ".concat(e.getMessage()));
         }
     }
 
     private static void agendarConsulta() {
         Scanner entrada = new Scanner(System.in);
-        int cpf, crm;
+        String cpf, crm;
         String hora, data;
 
         System.out.print("Digite o Horario: ");
@@ -110,36 +112,31 @@ public class menu {
 
         crudPaciente.visualizar();
         System.out.print("Digite o CPF do Paciente: ");
-        cpf = entrada.nextInt();
+        cpf = entrada.next();
 
         crudMedico.visualizar();
         System.out.print("Digite o CRM do medico: ");
-        crm = entrada.nextInt();
+        crm = entrada.next();
 
         Agenda ag = new Agenda(data, hora, crudMedico.getMedico(crm), crudPaciente.getPaciente(cpf));
         crudAgenda.inserir(ag);
     }
 
-
     private static void cadastarPaciente() {
-        String nome;
-        int tel;
-        String end;
-        int cpf;
-        String conv;
+        String cpf, tel, end, nome,conv;
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o nome: ");
         nome = entrada.next();
 
         System.out.print("Digite o tel: ");
-        tel = entrada.nextInt();
+        tel = entrada.next();
 
         System.out.print("Digite o endereço: ");
         end = entrada.next();
 
         System.out.print("Digite o cpf: ");
-        cpf = entrada.nextInt();
+        cpf = entrada.next();
 
         System.out.print("Digite o convenio: ");
         conv = entrada.next();
@@ -148,12 +145,11 @@ public class menu {
         crudPaciente.inserir(paciente);
 
     }
-
     private static void cadastarMedico() {
         String nome;
-        int tel;
+        String tel;
         String end;
-        int cpf, crm;
+        String cpf, crm;
         String esp;
         Scanner entrada = new Scanner(System.in);
 
@@ -161,16 +157,16 @@ public class menu {
         nome = entrada.next();
 
         System.out.print("Digite o tel: ");
-        tel = entrada.nextInt();
+        tel = entrada.next();
 
         System.out.print("Digite o endereço: ");
         end = entrada.next();
 
         System.out.print("Digite o cpf: ");
-        cpf = entrada.nextInt();
+        cpf = entrada.next();
 
         System.out.print("Digite o crm: ");
-        crm = entrada.nextInt();
+        crm = entrada.next();
 
         System.out.print("Digite a especialidade: ");
         esp = entrada.next();

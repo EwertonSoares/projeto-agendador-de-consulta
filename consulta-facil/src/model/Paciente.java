@@ -3,7 +3,7 @@ package model;
 public class Paciente extends Pessoa {
     private String convenio;
 
-    public Paciente(String nome, int telefone, String endereco, int cpf, String convenio) {
+    public Paciente(String nome, String telefone, String endereco, String cpf, String convenio) {
         super(nome, telefone, endereco, cpf);
         this.convenio = convenio;
     }
