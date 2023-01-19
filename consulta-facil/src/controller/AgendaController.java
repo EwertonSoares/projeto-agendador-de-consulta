@@ -3,6 +3,7 @@ package controller;
 
 import controller.dao.AgendaDAO;
 import model.Agenda;
+import model.Paciente;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class AgendaController implements AgendaDAO {
 
     @Override
     public void visualizar() {
-        for (Agenda agenda: this.agendas) {
+        for (Agenda agenda : this.agendas) {
             System.out.println(agenda.getPaciente().getNome());
             System.out.println(agenda.getMedico().getNome());
             System.out.println(agenda.getHorario());
@@ -30,7 +31,7 @@ public class AgendaController implements AgendaDAO {
     }
 
     @Override
-    public boolean deletar() {
-        return false;
+    public boolean deletar(Agenda agenda) {
+        return agendas.remove(agenda);
     }
 }

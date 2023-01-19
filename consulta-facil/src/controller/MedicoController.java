@@ -31,7 +31,6 @@ public class MedicoController implements MedicoDAO {
             System.out.println("CRM: "+ m.getCrm() + " Nome: "+ m.getNome());
         }
     }
-
     @Override
     public boolean deletar() {
         return false;

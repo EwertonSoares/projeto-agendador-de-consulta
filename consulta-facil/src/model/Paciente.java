@@ -7,6 +7,9 @@ public class Paciente extends Pessoa {
         super(nome, telefone, endereco, cpf);
         this.convenio = convenio;
     }
+
+    public Paciente() {}
+
     public String getConvenio() {
         return convenio;
     }

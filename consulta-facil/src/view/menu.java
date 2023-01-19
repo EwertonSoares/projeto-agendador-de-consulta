@@ -8,9 +8,10 @@ import model.*;
 import java.util.Scanner;
 
 public class menu {
-    static PacienteConroller crudPaciente  = new PacienteConroller();
-    static AgendaController crudAgenda    = new AgendaController();
-    static MedicoController crudMedico    = new MedicoController();
+    static PacienteConroller crudPaciente = new PacienteConroller();
+    static AgendaController crudAgenda = new AgendaController();
+    static MedicoController crudMedico = new MedicoController();
+
     public static void main(String[] args) {
 
         Scanner leia = new Scanner(System.in);
@@ -57,6 +58,7 @@ public class menu {
                     break;
                 case 4:
                     System.out.println("Cancelar consulta");
+                    cancelarConsulta();
                     break;
                 case 5:
                     System.out.println("Cadastrar Médico");
@@ -74,11 +76,32 @@ public class menu {
 
     }
 
+    private static void cancelarConsulta() {
+        Scanner getInfo = new Scanner(System.in);
+        Paciente paciente = new Paciente();
+
+        System.out.println("\n### Para cancelar a consulta preencha cpf abaixo: ###\n ");
+
+        System.out.println("Digite seu cpf: ");
+        int cpf = getInfo.nextInt();
+
+        paciente.setCpf(cpf);
+
+        deletarAgenda(paciente);
+    }
+
+    private static void deletarAgenda(Paciente paciente) {
+        if(crudAgenda.deletar(new Agenda(paciente))) {
+            System.out.println("**** Agenda removida com sucesso! *****");
+        } else {
+            System.out.println("**** ERRO *****");
+        }
+    }
+
     private static void agendarConsulta() {
         Scanner entrada = new Scanner(System.in);
         int cpf, crm;
         String hora, data;
-
 
         System.out.print("Digite o Horario: ");
         hora = entrada.next();
@@ -99,7 +122,11 @@ public class menu {
 
 
     private static void cadastarPaciente() {
-        String nome; int tel; String end; int cpf; String conv;
+        String nome;
+        int tel;
+        String end;
+        int cpf;
+        String conv;
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o nome: ");
@@ -123,7 +150,11 @@ public class menu {
     }
 
     private static void cadastarMedico() {
-        String nome; int tel; String end; int cpf, crm; String esp;
+        String nome;
+        int tel;
+        String end;
+        int cpf, crm;
+        String esp;
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o nome: ");

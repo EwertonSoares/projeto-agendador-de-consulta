@@ -13,6 +13,10 @@ public class Agenda{
         this.paciente = paciente;
     }
 
+    public Agenda(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
     public String getData() {
         return data;
     }

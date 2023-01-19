@@ -35,7 +35,7 @@ public class PacienteConroller implements PacienteDAO {
     }
 
     @Override
-    public boolean deletar() {
+    public boolean deletar(Paciente paciente) {
         return false;
     }
 }
