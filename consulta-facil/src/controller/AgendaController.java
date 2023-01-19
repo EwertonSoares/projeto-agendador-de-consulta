@@ -2,6 +2,7 @@ package controller;
 
 
 import controller.dao.AgendaDAO;
+
 import model.Agenda;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class AgendaController implements AgendaDAO {
             System.out.println(agenda.getHorario());
             System.out.println(agenda.getData());
         }
+
     }
 
     @Override
