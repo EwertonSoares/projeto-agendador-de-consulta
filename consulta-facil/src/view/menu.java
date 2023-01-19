@@ -1,13 +1,16 @@
 package view;
 
+import controller.AgendaController;
+import controller.MedicoController;
+import controller.PacienteConroller;
 import model.*;
 
 import java.util.Scanner;
 
 public class menu {
     static PacienteConroller crudPaciente  = new PacienteConroller();
-    static AgendaController  crudAgenda    = new AgendaController();
-    static MedicoController  crudMedico    = new MedicoController();
+    static AgendaController crudAgenda    = new AgendaController();
+    static MedicoController crudMedico    = new MedicoController();
     public static void main(String[] args) {
 
         Scanner leia = new Scanner(System.in);

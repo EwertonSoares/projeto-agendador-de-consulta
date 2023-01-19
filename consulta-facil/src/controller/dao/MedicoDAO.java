@@ -1,4 +1,4 @@
-package controller;
+package controller.dao;
 
 import model.Medico;
 
