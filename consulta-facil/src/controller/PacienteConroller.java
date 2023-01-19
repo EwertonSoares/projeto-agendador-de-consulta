@@ -12,9 +12,9 @@ public class PacienteConroller implements PacienteDAO {
         this.pacientes = new ArrayList<Paciente>();
     }
 
-    public Paciente getPaciente(int cpf){
+    public Paciente getPaciente(String cpf){
         for (Paciente p: this.pacientes) {
-            if(p.getCpf() == cpf)
+            if(p.getCpf().equals(cpf))
                 return   p;
         }
         return null;

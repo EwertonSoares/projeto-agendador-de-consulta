@@ -3,12 +3,12 @@ package model;
 public class Pessoa {
 
     private String nome;
-    private int telefone;
+    private String telefone;
     private String endereco;
-    private int cpf;
+    private String cpf;
 
 
-    public Pessoa(String nome, int telefone, String endereco, int cpf) {
+    public Pessoa(String nome, String telefone, String endereco, String cpf) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -25,11 +25,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -41,12 +41,11 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
 }

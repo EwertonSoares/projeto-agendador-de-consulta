@@ -14,7 +14,6 @@ public class AgendaController implements AgendaDAO {
         this.agendas = new ArrayList<Agenda>();
     }
 
-
     @Override
     public void inserir(Agenda agenda) {
         this.agendas.add(agenda);

@@ -1,20 +1,20 @@
 package model;
 
 public class Medico extends Pessoa {
-    private int crm;
+    private String crm;
     private String especialidade;
 
-    public Medico(String nome, int telefone, String endereco, int cpf, int crm, String especialidade) {
+    public Medico(String nome, String telefone, String endereco, String cpf, String crm, String especialidade) {
         super(nome, telefone, endereco, cpf);
         this.crm = crm;
         this.especialidade = especialidade;
     }
 
-    public int getCrm() {
+    public String getCrm() {
         return crm;
     }
 
-    public void setCrm(int crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
     }
 
@@ -25,5 +25,4 @@ public class Medico extends Pessoa {
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
-
 }

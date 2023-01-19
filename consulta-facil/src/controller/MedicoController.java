@@ -12,9 +12,9 @@ public class MedicoController implements MedicoDAO {
         this.medicos = new ArrayList<>();
     }
 
-    public Medico getMedico(int crm){
+    public Medico getMedico(String crm){
         for (Medico m: this.medicos) {
-            if(m.getCrm() == crm)
+            if(m.getCrm().equals(crm))
                 return m;
         }
         return null;
