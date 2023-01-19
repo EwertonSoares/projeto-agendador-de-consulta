@@ -1,15 +1,16 @@
 package controller;
 
+import controller.dao.GeralDAO;
 import controller.dao.PacienteDAO;
 import model.Paciente;
 
 import java.util.ArrayList;
 
-public class PacienteConroller implements PacienteDAO {
+public class PacienteConroller implements PacienteDAO, GeralDAO {
     private ArrayList<Paciente> pacientes;
 
      public PacienteConroller() {
-        this.pacientes = new ArrayList<Paciente>();
+        this.pacientes = new ArrayList<>();
     }
 
     public Paciente getPaciente(String cpf){

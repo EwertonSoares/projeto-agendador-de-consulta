@@ -1,5 +1,7 @@
 package model;
 
+import controller.dao.GeralDAO;
+
 public class Paciente extends Pessoa {
     private String convenio;
 

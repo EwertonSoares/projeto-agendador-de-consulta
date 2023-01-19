@@ -41,7 +41,7 @@ public class menu {
             opcao = leia.nextInt();
 
             if (opcao == 0) {
-                System.out.println("Consulta fácil agradece pela preferência!");
+                System.out.println("\n*** Consulta fácil agradece pela preferência! ***\n");
                 leia.close();
                 System.exit(0);
             }
@@ -103,7 +103,7 @@ public class menu {
     private static void atualizar(String data, String horario, Paciente paciente) throws AgendaNaoAtualizadaException {
         try {
             crudAgenda.atualizar(new Agenda(data, horario, null, paciente));
-            System.out.println("**** Agenda atualizasda com sucesso! *****");
+            System.out.println("\n**** AGENDA ATUALIZADA COM SUCESSO *****\n");
         } catch (Exception e) {
             throw new AgendaNaoAtualizadaException("Não foi possivel atualizar a agenda - ".concat(e.getMessage()));
         }
@@ -130,7 +130,7 @@ public class menu {
     private static void deletarAgenda(Paciente paciente) throws AgendaNaoRemovidaException {
         try {
             crudAgenda.deletar(new Agenda(paciente));
-            System.out.println("**** Agenda removida com sucesso! *****");
+            System.out.println("\n**** AGENDA REMOVIDA COM SUCESSO! *****");
         } catch (Exception e) {
             throw new AgendaNaoRemovidaException("Não foi possivel deletar a agenda - ".concat(e.getMessage()));
         }
@@ -158,6 +158,7 @@ public class menu {
         Agenda ag = new Agenda(data, hora, crudMedico.getMedico(crm), crudPaciente.getPaciente(cpf));
         try {
             crudAgenda.inserir(ag);
+            System.out.println("\n**** CONSULTA AGENDADA COM SUCESSO! *****\n");
         } catch (Exception e) {
             throw new ConsultaNaoAgendadaException("Não foi possivel agendar a consulta - " + e.getMessage());
         }
@@ -186,6 +187,7 @@ public class menu {
 
         try {
             crudPaciente.inserir(paciente);
+            System.out.println("**** PACIENTE CADASTRADO COM SUCESSO! *****\n");
         } catch (Exception e) {
             throw new PacienteNaoCadastradoException("Não foi possivel cadastrar paciente - " + e.getMessage());
         }
@@ -219,6 +221,7 @@ public class menu {
 
         try {
             crudMedico.inserir(medico);
+            System.out.println("**** MEDICO CADASTRADO COM SUCESSO! *****\n");
         } catch (Exception e) {
             throw new MedicoNaoCadastradoException("Não foi possivel cadastrar paciente - " + e.getMessage());
         }

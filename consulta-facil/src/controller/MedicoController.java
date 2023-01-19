@@ -1,11 +1,12 @@
 package controller;
 
+import controller.dao.GeralDAO;
 import controller.dao.MedicoDAO;
 import model.Medico;
 
 import java.util.ArrayList;
 
-public class MedicoController implements MedicoDAO {
+public class MedicoController implements MedicoDAO, GeralDAO {
     ArrayList<Medico> medicos;
 
     public MedicoController() {
@@ -32,7 +33,7 @@ public class MedicoController implements MedicoDAO {
         }
     }
     @Override
-    public boolean deletar() {
+    public boolean deletar(Medico medico) {
         return false;
     }
 }
