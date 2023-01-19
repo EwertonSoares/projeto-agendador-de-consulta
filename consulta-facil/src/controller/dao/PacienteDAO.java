@@ -1,5 +1,6 @@
 package controller.dao;
 
+import model.Agenda;
 import model.Paciente;
 
 public interface PacienteDAO {
@@ -8,5 +9,5 @@ public interface PacienteDAO {
 
     public void visualizar();
 
-    public boolean deletar();
+    boolean deletar(Paciente paciente);
 }
