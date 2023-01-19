@@ -1,6 +1,7 @@
-package model;
+package controller;
 
-import controller.MedicoDAO;
+import controller.dao.MedicoDAO;
+import model.Medico;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,7 @@
-package model;
+package controller;
 
-import controller.PacienteDAO;
+import controller.dao.PacienteDAO;
+import model.Paciente;
 
 import java.util.ArrayList;
 

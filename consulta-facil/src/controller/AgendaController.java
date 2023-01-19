@@ -1,7 +1,8 @@
-package model;
+package controller;
 
 
-import controller.AgendaDAO;
+import controller.dao.AgendaDAO;
+import model.Agenda;
 
 import java.util.ArrayList;
 
